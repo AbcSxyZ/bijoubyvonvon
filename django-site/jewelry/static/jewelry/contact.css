@@ -1,0 +1,13 @@
+/* Configuration for contact form. */
+
+/* Entire form format */
+
+#contact-form label{
+    color:hsl(0, 0%, 100%);
+}
+
+/* Notification popup */
+
+#contact-form #notification .notification{
+    padding:6px;
+}

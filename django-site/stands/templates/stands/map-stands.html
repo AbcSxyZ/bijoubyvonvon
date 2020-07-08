@@ -1,0 +1,58 @@
+
+{% load static %}
+{% load leaflet_tags  %}
+
+<link href="{% static 'stands/map-stands.css' %}" rel="stylesheet">
+
+<!-- Entire map display with all stands -->
+<div id="stands-map" class="container card">
+    <h2 class="title is-2 has-text-centered">Me Retrouver</h2>
+
+    <!-- Leaflet map with django plugin : https://github.com/makinacorpus/django-leaflet -->
+    {% leaflet_map "leaflet-map" callback="window.addStandsPopup" %}
+
+    <!-- Stands list -->
+    <section id="list-stands" class="section">
+        {% if not stands %}
+            <p>
+            Aucun stand disponible actuellement.
+            <p>
+        {% endif %}
+
+        {% for stand_instance in stands %}
+            <div class="card stand-card" data-lat={{stand_instance.latitude}}
+                     data-long={{stand_instance.longitude}}
+                     title="cliquer pour localiser">
+                <div class="card-content">
+
+                    <p class="card-information">
+                        <h3 class="title is-4 stand-name">{{stand_instance.name}}</span>
+                        {% if stand_instance.weekly %}
+                            <span class="subtitle is-6">- Hebdomadaire</span>
+
+                        {% endif %}
+                        <br>
+                        <span class="title is-6" style="font-style:italic;">
+                        {{stand_instance.date_display | safe}}
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Content for the popup  -->
+                <div class="popup-content" style="display:none;">
+                    <p>
+                        <span class="title is-6">
+                            {{stand_instance.name}}
+                        </span>
+                        <br>
+                        {{stand_instance.date_display | safe}}
+                    </p>
+                    <p>
+                        {{stand_instance.description_html | safe}}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </section>
+</div>

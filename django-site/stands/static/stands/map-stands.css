@@ -1,0 +1,41 @@
+
+/* Map */
+
+#stands-map{
+    z-index:1;
+    padding:20px;
+    margin:30px;
+}
+
+/* List of stands cards */
+
+/* General configuration for the list */
+
+#list-stands{
+    max-height:20em;
+    overflow:auto;
+    padding:0;
+    margin-top:2em;
+    margin-bottom:2em;
+}
+
+/* Single card configurations */
+
+#list-stands .card{
+    margin:15px;
+    cursor:pointer;
+
+    transition-duration:0.2s;
+    transition-property:box-shadow;
+}
+
+#list-stands .card:hover{
+    transition-duration:0.5s;
+    transition-property:box-shadow;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0.5em 1em -0.125em rgba(30, 30, 30, 0.3), 0 0px 0 1px rgba(30, 30, 30, 0.06);
+}
+
+#stands-map .deleted-event{
+    text-decoration:line-through;
+}

@@ -1,0 +1,63 @@
+{% load static %}
+<section id="contact-form" class="hero is-dark">
+    {% csrf_token %}
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <h2 class="column has-text-centered title is-3 has-text-white">
+                    Contact
+                </h2>
+            </div>
+
+            <!-- Position for the popup message if the email is send or failed -->
+            <div id="notification">
+                
+            </div>
+
+            <!-- Input of the form (mail, subject and message) -->
+            <!-- User email -->
+            <div class="field email-user">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" placeholder="mail@example.com">
+                </div>
+                <p class="help is-danger" style="display:none;">This email is invalid</p>
+            </div>
+
+            <!-- Message subject -->
+            <div class="field user-subject">
+                <label class="label">Sujet</label>
+                <div class="control">
+                    <div class="select">
+                        <select>
+                            <option>-</option>
+                            <option>Demande de renseignement</option>
+                            <option>Faire une commande</option>
+                            <option>Achat bijou</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message field -->
+            <div class="field msg-input">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Veuillez saisir votre message..."></textarea>
+                </div>
+                <p class="help is-danger" style="display:none;">
+                Veuillez préciser votre message.
+                </p>
+            </div>
+
+            <!-- Sending button -->
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" onclick="verifyMailData()">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="{% static 'jewelry/contact.css' %}" rel="stylesheet">
+<script src="{% static 'jewelry/contact.js' %}" type="text/javascript"></script>

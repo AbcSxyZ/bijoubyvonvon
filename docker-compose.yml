@@ -1,0 +1,69 @@
+version: '2.2'
+services:
+    apache:
+        container_name: $DOCKER_APACHE_CONTAINER
+        build: .
+        hostname: bijoubijoubyvonvon.com
+        volumes:
+            - ./log-apache:/var/log/apache2
+            - ./conf-apache:/etc/apache2
+            - ./django-site:/var/www
+        environment:
+            #Databases settings
+            - DB_PASS=$DJANGO_DB_PASS
+            - DB_USER=$DJANGO_DB_USER
+            - DB_NAME=$DJANGO_DATABASE
+            - DB_PORT=$DJANGO_DB_PORT
+            - SECRET_KEY=$DJANGO_SECRET_KEY
+            - DOCKER_MYSQL_CONTAINER
+            - DOMAINS
+            
+            #Mail settings
+            - MAIL_USER
+            - MAIL_PASS
+            - MAIL_PORT
+            - MAIL_HOST
+
+            #Encoding
+            - PYTHONIOENCODING=UTF-8
+        networks:
+            - django-net
+        ports:
+            - "80:80"
+            - "443:443"
+
+    mysql:
+        container_name: $DOCKER_MYSQL_CONTAINER
+        image: mariadb:10.3
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+            - MYSQL_DATABASE=${DJANGO_DATABASE}
+            - MYSQL_USER=${DJANGO_DB_USER}
+            - MYSQL_PASSWORD=${DJANGO_DB_PASS}
+        volumes:
+            - ./conf-sql/:/etc/mysql
+            - ./log-mysql:/var/log/mysql
+            - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+        networks:
+            - django-net
+    certbot:
+        build: ./certbot
+        container_name: $DOCKER_CERTBOT_CONTAINER
+        ports:
+            - "80:80"
+
+    matomo:
+        build: ./matomo
+        container_name: $DOCKER_MATOMO_CONTAINER
+        ports:
+            - "8080:443"
+        volumes:
+            - ./matomo/apache2:/etc/apache2
+
+        networks:
+            - django-net
+
+
+networks:
+    django-net:
+        driver: bridge

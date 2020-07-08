@@ -1,0 +1,12 @@
+.*.sw[pno]
+__pycache__/
+.DS_Store
+migrations/
+django-site/static/
+
+
+# Docker custom
+env
+log-*/*.log
+backup/*
+*.pem

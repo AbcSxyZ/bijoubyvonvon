@@ -1,0 +1,74 @@
+:root{
+    --main-color-1:#353535;
+    --main-color-2:#c1b6a2;
+    --main-color-3:#119da4;
+    --main-color-4:#ffffff;
+    --main-color-5:#3273dc;
+}
+
+
+/*
+** Custom font(s)
+*/
+
+@font-face {
+      font-family: "Custom-font";
+        src: url("/static/common/coves.otf");
+}
+
+/*
+** Custom on entire page
+*/
+
+body{
+    background-color:var(--main-color-4);
+    font-family:"Custom-font", serif;
+}
+
+/*
+** Top navbar
+*/
+
+#navMenu.navbar-menu.is-active
+{
+    background-color:var(--main-color-1);
+}
+
+#navMenu.navbar-menu.is-active .navbar-item
+{
+    color:var(--main-color-4);
+}
+
+/*
+** Custom jewel gallery
+*/
+
+#jewel-cards .card{
+}
+
+#technique-filter li.is-active{
+    color:var(--main-color-1);
+}
+
+#type-filter ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    background-color:var(--main-color-2);
+    color:white;
+}
+
+#type-filter ul.ks-cboxtags li label{
+    border: 2px solid var(--main-color-2);
+    color: var(--main-color-2);
+}
+
+
+/*
+** Custom on stands map
+*/
+
+#stands-map {
+    /* background-color:; */
+}
+
+#stands-map .card{
+    /* background-color:; */
+}

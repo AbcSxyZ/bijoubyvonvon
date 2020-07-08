@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr" class="has-navbar-fixed-top">
+    <head>
+        {% load leaflet_tags  %}
+        {% load static %}
+        {% leaflet_js %}
+        {% leaflet_css %}
+        <link href="{% static 'common/custom-bulma.css' %}" rel="stylesheet">
+        <link href="{% static 'common/bulma-social.css' %}" rel="stylesheet">
+        <link href="{% static 'common/style.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bijou Bijou By Vonvon</title>
+        <meta name="description" content="Artisan bijoutier - Site d'exposition. Retrouvez l'ensemble
+        de mes bijoux, un ensemble de créations uniques. Découvrez tous les événements où je suis présent." />
+
+
+        <!-- Matomo -->
+    <script type="text/javascript">
+          var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+      var u="//{{matomo_url}}/";
+                  _paq.push(['setTrackerUrl', u+'matomo.php']);
+                  _paq.push(['setSiteId', '1']);
+                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                  g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js';
+              s.parentNode.insertBefore(g,s);
+                })();
+    </script>
+    <!-- End Matomo Code -->
+    </head>
+    <body>
+
+        <!-- Navigation menu -->
+        <nav id="site-nav" class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+
+                <a role="button" class="navbar-burger burger is-dark" aria-label="menu" aria-expanded="false"
+                                                                                data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="#about" class="navbar-item">A propos</a>
+                    <a href="#jewel-gallery" class="navbar-item">Bijoux</a>
+                    <a href="#stands-map" class="navbar-item">Stands</a>
+                    <a href="#contact-form" class="navbar-item">Contact</a>
+                </div>
+            </div>
+        </nav>
+        <section id="banner" class="hero is-fullheight is-bold">
+            <div class="hero-body">
+                <div class="container has-text-right">
+                    <h1 class="title is-size-2 has-text-white">
+                        Bijou Bijou By Vonvon
+                    </h1>
+                    <h1 class="subtitle is-size-4 has-text-white">
+                        Bijoutier artisan créateur
+                    </h2>
+                </div>
+            </div>
+        </section>
+        {% include "jewelry/about.html" %}
+        {% include 'jewelry/jewel_gallery.html' %}
+        {% include "stands/map-stands.html" %}
+        {% include 'jewelry/contact-form.html' %}
+
+        <script type="text/javascript" src="{% static 'common/notification.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/navbar.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/anchor-scroll.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/gallery-filter.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/gallery-filter-switch.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/gallery-technique-home.js' %}"></script>
+        <script type="text/javascript" src="{% static 'stands/setup-map.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jewelry/main.js' %}"></script>
+        <style type="text/css">
+section.hero#banner{
+    background-image:url("{{hero_img}}");
+    background-size:cover;
+    background-position: center center;
+}
+        </style>
+    </body>
+</html>

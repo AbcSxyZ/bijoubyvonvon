@@ -1,0 +1,40 @@
+{% extends "admin/index.html" %}
+<!-- Override the main admin index -->
+
+{% block title %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<!-- 
+    Display an extra list of custom view,
+    looking like an isolated app for the admin index.
+-->
+
+<!-- Duplicate id... -->
+<div id="content-main">
+    <div class="app-custom module">
+        <table>
+            <!-- Title of the section -->
+            <caption>
+                <span class="section" title="Custom urls for admin">
+                    {{ custom_app_name }}
+                </span>
+            </caption>
+
+            <!-- All view links are displayed -->
+            {% for view in custom_views %}
+                <tr class="">
+                    <th scope="row">
+                        <a href="{{view.url}}">{{ view.verbose }}</a>
+                    </th>
+                    <td>&nbsp;</td>
+                </tr>
+            {% endfor %}
+        <table>
+    </div>
+</div>
+
+<!-- Add default admin content -->
+{{ block.super }}
+{% endblock %}

@@ -1,0 +1,124 @@
+
+{% load static %}
+
+<link href="{% static 'jewelry/gallery.css' %}" rel="stylesheet">
+
+<section id="jewel-gallery" class="section">
+
+    <!-- Title for gallery -->
+    <div class="content title-container" style="text-align:center">
+        <h2 id="gallery-title" class="title is-3">
+            Galerie
+        </h2>
+    </div>
+
+    <!-- Home with the selection of technique-->
+    <section id="technique-selection">
+        {% for technique_row in columns_techniques %}
+        <div class="columns">
+            {% for technique_inst in technique_row %}
+            <div class="column">
+                <a data-technique="{{technique_inst.id}}">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{technique_inst.image.url}}" alt="{{technique_inst.name}}">
+                        </div>
+                        <div class="card-content has-text-centered">
+                            <h3 class='title is-6'>{{technique_inst.name}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- Jewel gallery where all jewel are displayed -->
+    <section id="jewel-display" style="display:none;">
+        <!-- Menu for filtering jewels by technique -->
+        <div id="technique-filter" class="breadcrumb is-centered is-boxed is-medium">
+            <ul>
+                {% for technique_inst in techniques %}
+                    <li data-technique="{{technique_inst.id}}">
+                        <a>{{technique_inst.name}}</a>
+                    </li>
+                {%endfor%}
+            </ul>
+        </div>
+
+        <!-- Checkboxes for filtering jewel by types -->
+        <div id="type-filter" class="container is-fluid">
+            <ul class="ks-cboxtags">
+                {% for jewel_type in types %}
+                <li>
+                    <input id="checkbox-type-{{jewel_type.id}}"
+                           type="checkbox" value={{jewel_type.id}}>
+                    <label for="checkbox-type-{{jewel_type.id}}">
+                        {{jewel_type.name}}
+                    </label>
+                </li>
+
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- CSS icon to create loading element -->
+        <div id=loader>
+            <div class="lds-facebook is-centered">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+    <!-- Modal template to display jewel image -->
+    <div id="jewel-modal" class="modal">
+      <div class="modal-background"></div>
+        <div class="modal-content">
+            <p class="image">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="">
+            </p>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+    <!-- Template for a complete Jewel card -->
+    <template id="jewel-template">
+        <div class="jewel-article">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <p class="jewel-description"></p>
+                    <p class="jewel-reference"></p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Container for all displayed jewels -->
+        <div id="jewel-cards">
+
+        </div>
+
+        <!-- Container if the gallery is having nothing to display
+            avoid column-count effect -->
+            <div id="empty-gallery">
+
+            </div>
+
+            <!-- Container for pagination bar -->
+            <div id="jewel-pagination">
+
+            </div>
+    </section>
+
+</section>
+<script type="text/javascript" src="{% static 'jewelry/gallery.js'%}" ></script>
+<script type="text/javascript" src="{% static 'jewelry/gallery-pagination.js'%}" ></script>
+    <script type="text/javascript" src="{% static 'jewelry/jewel-modals.js' %}"></script>

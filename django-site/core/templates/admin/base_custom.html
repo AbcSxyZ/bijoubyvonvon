@@ -1,0 +1,44 @@
+{% extends 'admin/base_site.html' %}
+<!-- Extend base page, create an admin page with
+minimal content, used as template for custom view -->
+{% load admin_modify %}
+
+{% block title %}
+{{block.super}}
+{% endblock %}
+
+
+{% block extrahead %}
+    {{ block.super }}
+    <meta charset="utf-8"/>
+
+    <!-- Must be override to add extra head -->
+    {% block customhead %}{% endblock %}
+{% endblock %}
+
+<!-- Remove breadcrumbs list -->
+{% block breadcrumbs %}
+{% endblock %}
+
+<!-- Override to change the page <h1> title -->
+{% block content_title %}{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <!-- Title to overide for the view -->
+        <h1>{% block custom_admin_title %}{% endblock %}</h1>
+        <!-- Create the default form to manage extra settings -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Block to extend with Form Fields-->
+            {% block custom_admin %}{% endblock %}
+
+            
+            {% block submit_buttons_bottom %}
+                {% submit_row %}
+            {% endblock %}
+        </form>
+    </div>
+{% endblock%}
+

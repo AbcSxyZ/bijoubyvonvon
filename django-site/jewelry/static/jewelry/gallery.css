@@ -115,8 +115,12 @@ html{
 */
 
 #jewel-cards div.jewel-article{
+    /* Avoid splitting single card in multiple columns */
     break-inside: avoid;
-    display: flex;
+    -webkit-column-break-after: avoid;
+    page-break-after: avoid;
+    display: inline-block;
+
     margin-bottom:5px;
     padding-bottom:1.2em;
     padding-top:0.3em;

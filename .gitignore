@@ -3,10 +3,11 @@ __pycache__/
 .DS_Store
 migrations/
 django-site/static/
-
+django-site/media/
 
 # Docker custom
 env
 log-*/*.log
 backup/*
 *.pem
+db_init.sql
